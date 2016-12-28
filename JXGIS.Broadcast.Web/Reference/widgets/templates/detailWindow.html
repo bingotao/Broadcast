@@ -1,0 +1,18 @@
+﻿<div class="bb-item-details">
+    <span data-dojo-attach-point="btnClose" class="bb-details-close glyphicon glyphicon-remove"></span>
+    <div>
+        <div data-dojo-attach-point="txtTitle" class="bb-item-content-title"></div>
+        <div data-dojo-attach-point="txtDetail" class="bb-item-content-details"></div>
+        <div data-dojo-attach-point="txtTime" class="bb-item-content-time"></div>
+    </div>
+    <div class="bb-comment">
+        <span data-dojo-attach-point="btnUseful" class="bb-comment-good bb-comment-btn"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;有用&nbsp;（<span data-dojo-attach-point="usefulCount" class="good-count">0</span>）</span>
+        <span data-dojo-attach-point="btnUncorrect" class="bb-comment-bad bb-comment-btn"><span class="glyphicon glyphicon-thumbs-down"></span>&nbsp;&nbsp;有误&nbsp;（<span data-dojo-attach-point="uncorrectCount" class="bad-count">0</span>）</span>
+        <span data-dojo-attach-point="btnCorrect" class="bb-comment-edit bb-comment-btn"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;纠错</span>
+        <div data-dojo-attach-point="editPanel" class="bb-comment-edit-panel clearfix">
+            <textarea data-dojo-attach-point="txtEdit" placeholder="感谢您帮助我们纠正其中的错误信息..."></textarea>
+            <span data-dojo-attach-point="btnCancel" class="bb-comment-edit-cancel bb-comment-btn"><span class="glyphicon glyphicon-ban-circle"></span>&nbsp;&nbsp;取消</span>
+            <span data-dojo-attach-point="btnSubmit" class="bb-comment-edit-submit bb-comment-btn"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;提交</span>
+        </div>
+    </div>
+</div>

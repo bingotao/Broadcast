@@ -1,0 +1,806 @@
+﻿html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: 'Microsoft YaHei';
+}
+
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.main {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+    .main.active {
+        filter: blur(1px);
+        -webkit-filter: blur(1px);
+    }
+
+#map {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.bb-title {
+    position: absolute;
+    z-index: 9;
+    top: 5px;
+    left: 5px;
+    height: 54px;
+    border-radius: 3px;
+    background: rgba(53,150,234,1);
+    color: white;
+    width: 420px;
+    text-align: center;
+}
+
+    .bb-title img {
+        margin-top: -14px;
+    }
+
+.bb-title-content {
+    line-height: 54px;
+    font-size: 26px;
+    letter-spacing: 4px;
+}
+
+.bb-title-time {
+    line-height: 60px;
+    font-size: 15px;
+}
+
+.bb-login-btn {
+    font-size: 12px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+    .bb-login-btn:hover {
+        border-bottom: 2px white solid;
+    }
+
+.bb-broadcast-panel {
+    position: absolute;
+    top: 65px;
+    left: 5px;
+    height: 500px;
+    width: 420px;
+    border-radius: 3px;
+    background-color: white;
+    z-index: 7;
+    border: 5px solid rgba(53,150,234,1);
+}
+
+.bb-broadcast-content {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+.bb-navbar {
+    position: relative;
+    z-index: 2;
+    margin-top: 5px;
+    border-bottom: 2px solid rgba(53,150,234,1);
+}
+
+    .bb-navbar li {
+        float: left;
+        width: 120px;
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+        color: rgb(0, 110, 206);
+        letter-spacing: 2px;
+        font-size: 14px;
+        border: 1px solid rgba(53,150,234,1);
+        border-bottom: 0;
+        cursor: pointer;
+        border-right-width: 0;
+    }
+
+        .bb-navbar li.active {
+            background-color: rgba(53,150,234,1);
+            color: white;
+        }
+
+        .bb-navbar li:first-child {
+            margin-left: 20px;
+            border-radius: 3px 0 0 0;
+        }
+
+        .bb-navbar li:last-child {
+            border-radius: 0 3px 0 0;
+            border-right-width: 1px;
+        }
+
+.bb-nav-panel > div {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 5px;
+    z-index: -1;
+    background: inherit;
+}
+
+    .bb-nav-panel > div.active {
+        z-index: 1;
+    }
+
+/*重要程度*/
+.bb-urgency-level {
+    padding: 5px 20px;
+    height: 40px;
+    line-height: 28px;
+    font-size: 14px;
+    z-index: 9;
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    width: auto;
+    background: white;
+    border-radius: 3px;
+    border: 2px solid rgba(53,150,234,1);
+    color: rgb(0, 110, 206);
+}
+
+    .bb-urgency-level > * {
+        float: left;
+    }
+
+.bb-urgency-levels {
+    margin: 10px 10px 0;
+}
+
+    .bb-urgency-levels li {
+        float: left;
+        height: 10px;
+        width: 80px;
+    }
+
+.level1 {
+    background-color: #34b000;
+}
+
+.level2 {
+    background-color: #fecb00;
+}
+
+.level3 {
+    background-color: #df0100;
+}
+
+.level4 {
+    background-color: #8e0e0b;
+}
+
+/*播报审核面板*/
+.bb-bbsh-searchpanel, .bb-fbgl-searchpanel {
+    width: 380px;
+    margin-left: 5px;
+}
+
+    .bb-bbsh-searchpanel th, .bb-bbsh-searchpanel td,
+    .bb-fbgl-searchpanel th, .bb-fbgl-searchpanel td {
+        font-size: 14px;
+        font-weight: normal;
+        text-align: center;
+        padding: 3px 0;
+    }
+
+    .bb-bbsh-searchpanel th,
+    .bb-fbgl-searchpanel th {
+        color: rgb(0, 110, 206);
+    }
+
+    .bb-bbsh-searchpanel .input-group-addon, .bb-bbsh-searchpanel .input-group-addon > span,
+    .bb-fbgl-searchpanel .input-group-addon, .bb-fbgl-searchpanel .input-group-addon > span {
+        border-color: #4381e4;
+        background-color: rgba(53,150,234,1);
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        .bb-bbsh-searchpanel .input-group-addon:hover, .bb-bbsh-searchpanel .input-group-addon:hover > span,
+        .bb-fbgl-searchpanel .input-group-addon:hover, .bb-fbgl-searchpanel .input-group-addon:hover > span {
+            background-color: rgb(16, 132, 232);
+        }
+
+.select-item {
+    font-size: 12px;
+    display: inline-block;
+    padding: 3px 5px;
+    background-color: #eee;
+    color: #666;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .select-item.active {
+        background-color: #048e0f;
+        color: white;
+    }
+
+#bbsh_date_begin, #bbsh_date_end,
+#fbgl_date_begin, #fbgl_date_end,
+#publish_date, #expiration_date {
+    width: 100px;
+}
+
+.bb-bbsh .textbox-text,
+.bb-fbgl .textbox-text {
+    text-align: center;
+}
+
+.bb-bbsh .input-group,
+.bb-fbgl .input-group {
+    width: 260px;
+    margin-left: 20px;
+}
+
+/*绘制工具组*/
+.bb-location-panel, .bb-feedback-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    display: none;
+    z-index: 10;
+}
+
+.bb-feedback-panel {
+    padding: 10px;
+}
+
+    .bb-feedback-panel .title {
+        padding: 3px 10px;
+        font-size: 18px;
+        border-bottom: dotted 1px rgba(53,150,234,1);
+        color: rgb(0, 110, 206);
+        letter-spacing: 3px;
+        text-shadow: #eee 1px 1px 0px, #eee 1px 1px 0;
+    }
+
+    .bb-location-panel.active, .bb-feedback-panel.active {
+        display: block;
+    }
+
+    .bb-feedback-panel .btn-close {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        height: 24px;
+        width: 24px;
+        text-align: center;
+        line-height: 24px;
+        border-radius: 20px;
+        background: rgba(53,150,234,1);
+        color: white;
+        transition: 0.3s background-color;
+        cursor: pointer;
+    }
+
+        .bb-feedback-panel .btn-close :hover {
+            background: rgb(0, 125, 234);
+        }
+
+    .bb-feedback-panel .feedback {
+        display: inline-block;
+        font-size: 20px;
+        text-align: center;
+        margin: 10px;
+        width: 150px;
+    }
+
+        .bb-feedback-panel .feedback span {
+            font-size: 26px;
+            font-weight: 700;
+            font-family: 'Times New Roman';
+        }
+
+    .bb-feedback-panel span:nth-child(3) {
+        color: #f15151;
+    }
+
+    .bb-feedback-panel span:nth-child(4) {
+        color: #808080;
+    }
+
+.bb-locationbar {
+    width: 305px;
+    margin: 20px auto 10px auto;
+    border-bottom: 1px solid rgba(53,150,234,1);
+}
+
+    .bb-locationbar > * {
+        float: left;
+    }
+
+    .bb-locationbar li {
+        float: left;
+        height: 40px;
+        width: 40px;
+        margin: 5px;
+        cursor: pointer;
+        font-size: 26px;
+        text-align: center;
+        line-height: 45px;
+    }
+
+        .bb-locationbar li:hover span {
+            color: rgb(255,165,0);
+        }
+
+        .bb-locationbar li span {
+            color: rgb(66,192,251);
+        }
+
+.draw-point {
+    background-image: url('../../../Imgs/point.png');
+}
+
+    .draw-point:hover {
+        background-image: url('../../../Imgs/point-1.png');
+    }
+
+    .draw-point.active {
+        background-image: url('../../../Imgs/point-2.png');
+    }
+
+.draw-polyline {
+    background-image: url('../../../Imgs/line.png');
+}
+
+    .draw-polyline:hover {
+        background-image: url('../../../Imgs/line-1.png');
+    }
+
+    .draw-polyline.active {
+        background-image: url('../../../Imgs/line-2.png');
+    }
+
+.draw-polygon {
+    background-image: url('../../../Imgs/polygon.png');
+}
+
+    .draw-polygon:hover {
+        background-image: url('../../../Imgs/polygon-1.png');
+    }
+
+    .draw-polygon.active {
+        background-image: url('../../../Imgs/polygon-2.png');
+    }
+
+.draw-drop {
+    background-image: url('../../../Imgs/drop1.png');
+}
+
+    .draw-drop:hover {
+        background-image: url('../../../Imgs/drop.png');
+    }
+
+.bb-location-current.active span {
+    animation: txt-color infinite 0.5s linear alternate;
+    -webkit-animation: txt-color infinite 0.5s linear alternate;
+}
+
+@-webkit-keyframes txt-color {
+    from {
+        color: rgb(255,165,0);
+    }
+
+    to {
+        color: rgb(245,47,47);
+    }
+}
+
+@keyframes txt-color {
+    from {
+        color: rgb(255,165,0);
+    }
+
+    to {
+        color: rgb(245,47,47);
+    }
+}
+
+.location-search-panel {
+    width: 380px;
+    margin: 10px auto;
+    display: none;
+    background-color: #eee;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+
+    .location-search-panel.active {
+        display: block;
+    }
+
+    .location-search-panel .input-group-addon, .location-search-panel .input-group-addon > span {
+        border-color: #4381e4;
+        background-color: rgba(53,150,234,1);
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        .location-search-panel .input-group-addon:hover, .location-search-panel .input-group-addon:hover > span {
+            background-color: rgb(16, 132, 232);
+        }
+
+    .location-search-panel .input-group {
+        width: 100%;
+    }
+
+    .location-search-panel .form-control::-webkit-input-placeholder {
+        font-style: italic;
+        color: #bbb;
+        letter-spacing: 2px;
+    }
+
+.bb-bbsh-searchpanel .form-control,
+.bb-fbgl-searchpanel .form-control {
+    height: 30px;
+}
+
+.bb-wtsb-submit-btn {
+    border-color: rgba(53,150,234,1);
+    color: white;
+    background-color: rgba(53,150,234,1);
+    padding: 5px 20px;
+    margin-top: 15px;
+}
+
+    .bb-wtsb-submit-btn:hover {
+        background-color: rgb(16, 132, 232);
+    }
+
+.bb-bbsh-tool-bar, .bb-fbgl-toolbar, .bb-yhgl-toolbar {
+    padding: 3px 10px;
+    border: 1px solid rgb(212, 212, 212);
+    background-color: rgb(245, 245, 245);
+}
+
+.bb-bbsh-tool-bar, .bb-fbgl-toolbar {
+    margin-top: 3px;
+    border-bottom: 0;
+}
+
+.bb-yhgl-toolbar {
+    border-top: 0;
+}
+
+    .bb-bbsh-tool-bar .bb-com-btn, .bb-yhgl-toolbar .bb-com-btn, .bb-fbgl-toolbar .bb-com-btn {
+        float: right;
+        margin-right: 5px;
+    }
+
+.detail table {
+    width: 100%;
+}
+
+    .detail table th {
+        text-align: center;
+        color: rgb(0, 110, 206);
+        font-size: 13px;
+    }
+
+    .detail table td {
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .detail table th, .detail table td {
+        padding: 3px 5px;
+        border: 1px dotted #ccc;
+    }
+
+.bb-bbsh-searchpanel .input-group-addon .glyphicon,
+.bb-fbgl-searchpanel .input-group-addon .glyphicon {
+    line-height: 10px;
+}
+
+.bb-com-btn {
+    display: inline-block;
+    padding: 3px 10px;
+    background-color: rgb(31, 126, 209);
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.1s all;
+    user-select: none;
+    -webkit-user-select: none;
+    font-size: 12px;
+}
+
+    .bb-com-btn:hover {
+        background-color: rgb(0, 110, 206);
+    }
+
+    .bb-com-btn > span {
+        transition: 0.1s all;
+    }
+
+/*用户管理*/
+.bb-yhgl-editpanel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+    .bb-yhgl-editpanel.active {
+        display: block;
+    }
+
+.bb-yhgl-editpanel, .bb-publish-panel {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid rgb(212, 212, 212);
+    background-color: #f7f7f7;
+    padding: 3px;
+}
+
+    .bb-yhgl-editpanel table {
+        width: 320px;
+        margin-top: 35px;
+        margin-left: 30px;
+    }
+
+    .bb-yhgl-editpanel th {
+        color: rgb(0, 110, 206);
+        text-align: center;
+    }
+
+
+    .bb-yhgl-editpanel th, .bb-yhgl-editpanel td {
+        padding: 5px;
+    }
+
+    .bb-yhgl-editpanel .form-control,
+    .bb-publish-panel .form-control {
+        height: 30px;
+        border-radius: 3px;
+        resize: none;
+    }
+
+/*发布管理*/
+.bb-fbgl-searchpanel label {
+    color: rgb(0, 110, 206);
+    font-size: 13px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/*发布面板*/
+.bb-publish-panel {
+    position: absolute;
+    top: 65px;
+    left: -100%;
+    height: 500px;
+    width: 420px;
+    border: 2px solid rgba(53,150,234,1);
+    background: white;
+    border-radius: 3px;
+    z-index: 9;
+    transition: 0.5s left;
+}
+
+    .bb-publish-panel.active {
+        left: 5px;
+    }
+
+    .bb-publish-panel form > table {
+        width: 400px;
+        margin: 0 auto;
+    }
+
+
+.bb-publish-close, .bb-yhgl-close {
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    line-height: 22px;
+    border-radius: 20px;
+    transition: 0.3s background-color;
+    cursor: pointer;
+    border: 1px solid rgba(53,150,234,1);
+    z-index: 9;
+    color: rgba(53,150,234,1);
+    background: white;
+}
+
+    .bb-publish-close:hover {
+        color: rgb(4, 95, 174);
+    }
+
+.bb-publish-panel form > table th {
+    padding: 8px 3px;
+    color: rgb(0, 110, 206);
+    text-align: center;
+    /*vertical-align: top;*/
+}
+
+.bb-publish-panel form > table td {
+    padding: 8px 3px;
+    text-align: left;
+}
+
+.bb-publish-title, .bb-yhgl-title {
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 10px;
+    color: white;
+    background: #3596EA;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.location-btns {
+    text-align: center;
+    margin: 10px;
+}
+
+.draw-items-panel {
+    width: 380px;
+    margin: 0 auto;
+    border: 1px solid rgba(53,150,234,1);
+    border-radius: 3px;
+}
+
+.draw-items-title {
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    padding: 0 10px;
+    background-color: rgba(53,150,234,1);
+}
+
+.draw-items {
+    position: relative;
+    padding: 5px 15px;
+    min-height: 100px;
+    overflow-y: auto;
+    max-height: 103px;
+}
+
+    .draw-items .draw-item {
+        display: block;
+        height: 20px;
+        line-height: 20px;
+        font-size: 12px;
+        border-radius: 3px;
+        margin: 2px 0;
+        padding: 0 5px 0 10px;
+        background-color: rgb(255,165,0);
+        color: white;
+        width: auto;
+        cursor: pointer;
+        float: left;
+        clear: both;
+    }
+
+        .draw-items .draw-item .glyphicon {
+            margin-left: 10px;
+        }
+
+.location-search-panel .input-group-addon .glyphicon {
+    line-height: 14px;
+}
+/*esri样式*/
+#map_zoom_slider *:focus {
+    outline: none;
+}
+
+.scalebar_bottom-right {
+    right: 160px;
+}
+
+.esriScalebarLine {
+    border-color: black;
+}
+
+.esriScalebarLabel {
+    color: black;
+}
+
+.map .tooltip {
+    display: block;
+    padding: 5px 15px;
+    background-color: rgba(0, 132, 232, 0.80);
+    border: 0;
+    font-size: 12px;
+    width: auto;
+    border-radius: 3px;
+    color: white;
+    letter-spacing: 2px;
+    font-family: 'Microsoft YaHei';
+}
+
+#drawLayer_layer image {
+    cursor: pointer;
+}
+
+/*easyui 样式*/
+.messager-window {
+    border-color: rgba(53,150,234,1);
+    border-radius: 3px;
+    background: rgba(53,150,234,1);
+}
+
+    .messager-window .panel-title {
+        color: white;
+    }
+
+    .messager-window .panel-tool a {
+        background-color: white;
+        border-radius: 3px;
+    }
+
+    .messager-window .window-body {
+        border-color: white;
+        font-size: 16px;
+    }
+
+    .messager-window .messager-button {
+        border-color: white;
+        border-top: 1px solid rgb(212, 212, 212);
+        background: white;
+    }
+
+        .messager-window .messager-button a {
+            border-color: rgba(53,150,234,1);
+            background: rgba(53,150,234,1);
+            border-radius: 3px;
+            color: white;
+        }
+
+    .messager-window .messager-question {
+        background: url('../../../Imgs/question.png') no-repeat 0 0;
+    }
+
+.window-mask {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+body > div > div > div[data-reactid='.0.0']:first-child {
+    margin: -5px 420px;
+}
+
+.ke-container {
+    width: 300px !important;
+}
+
+.ke-statusbar {
+    display: none;
+}
+
+span[data-reactid=".0.0.1.2.$=12.0"] {
+    display: none !important;
+}

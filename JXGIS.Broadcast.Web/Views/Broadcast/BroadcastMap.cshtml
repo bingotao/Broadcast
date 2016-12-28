@@ -1,0 +1,118 @@
+﻿@Styles.Render("~/Views/Broadcast/css/BroadcastMap.css")
+@Scripts.Render("~/Views/Broadcast/js/BroadcastMap.js")
+
+<div class="main">
+    <div class="bb-title">
+        <img src="~/Imgs/broadcast.png" />&nbsp;
+        <span class="bb-title-content">便民播报</span>&nbsp;
+        <span class="bb-title-time">2016年08月02日 星期二</span>
+        <span class="bb-login-btn"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;登录</span>
+    </div>
+    <div class="bb-broadcast-panel">
+
+        <div class="bb-broadcast-content">
+            <div class="bb-navbar clearfix">
+                <ul>
+                    <li class="active" data-target="bb-ssbb"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;实时播报</li>
+                    <li data-target="bb-wtsb"><span class="glyphicon glyphicon-open-file"></span>&nbsp;&nbsp;问题上报</li>
+                </ul>
+            </div>
+            <div class="bb-nav-panel clearfix">
+                <div class="bb-ssbb active active2">
+
+                    <div id="panel" style="height:100%;width:100%;overflow:hidden;">
+                        <div class="bb-items active">
+                        </div>
+                    </div>
+                    <div class="bb-tool-bar">
+                        <span class="bb-ssbb-toggle"><span class="glyphicon glyphicon-chevron-down"></span></span>
+                        <span class="bb-ssbb-pause"><span class="glyphicon glyphicon-pause"></span></span>
+                    </div>
+                </div>
+                <div class="bb-wtsb">
+                    <form name="report">
+                        <table class="bb-wtsb-layout">
+                            <tr>
+                                <th style="width:25%;" class="bb-wtsb-txt">标题&nbsp;<span class="enhance">*</span>：</th>
+                                <td style="width:75%;"><input name="Title" type="text" class="form-control" /></td>
+                            </tr>
+                            <tr>
+                                <th class="bb-wtsb-txt">描述&nbsp;<span class="enhance">*</span>：</th>
+                                <td><textarea name="Content" class="form-control"></textarea></td>
+                            </tr>
+                            <tr>
+                                <th class="bb-wtsb-txt">位置&nbsp;<span class="enhance">*</span>：</th>
+                                <td>
+                                    <div class="bb-locationbar clearfix">
+                                        <input name="Geometry" type="text" style="display:none;" />
+                                        <ul class="bb-drawtools">
+                                            <li class="draw-point" title="绘制点"></li>
+                                            <li class="bb-location-current" title="获取当前位置"><span class="glyphicon glyphicon-map-marker"></span></li>
+                                            <li class="bb-location-search" title="查找位置"><span class="glyphicon glyphicon-search"></span></li>
+                                            <li class="bb-location-drop" title="清除"></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="location-search-panel">
+                                        <div></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="bb-wtsb-txt">联系方式：</th>
+                                <td><input type="text" name="ContactInfo" class="form-control" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: center;">
+                                    <span class="bb-wtsb-submit-btn bb-comment-btn"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;提交</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="itemDetail">
+
+    </div>
+    <div class="bb-urgency-level clearfix">
+        <span>紧急程度：</span>
+        <span>低</span>
+        <ul class="bb-urgency-levels">
+            <li class="level1"></li>
+            <li class="level2"></li>
+            <li class="level3"></li>
+            <li class="level4"></li>
+        </ul>
+        <span>高</span>
+    </div>
+
+    <div id="map">
+    </div>
+    <div class="map-tools">
+        <span class="glyphicon glyphicon-fullscreen" title="全图"></span><span class="glyphicon glyphicon-home" title="我的位置"></span>
+    </div>
+</div>
+<div class="login">
+    <form name="login">
+        <div class="login-content">
+            <div>后台管理登录</div>
+            <span class="glyphicon glyphicon-remove-sign"></span>
+            <div class="group">
+                <span class="glyphicon glyphicon-user"></span>
+                <input name="UserName" type="text" placeholder="请输入用户名" />
+                <span class="glyphicon glyphicon-remove-sign"></span>
+            </div>
+            <div class="group">
+                <span class="glyphicon glyphicon-lock"></span>
+                <input name="Password" type="password" placeholder="请输入密码" />
+                <span class="glyphicon glyphicon-remove-sign"></span>
+            </div>
+            <span class="bb-comment-btn"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;&nbsp;&nbsp;登&nbsp;&nbsp;录</span>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+﻿@model  JXGIS.Broadcast.Entity.CapturedInfo
+<table>
+    <tr>
+        <th style="width:30%;">捕获时间</th>
+        <td style="width:70%;">@Html.Raw(((DateTime)Model.CapturedTime).ToString("yyyy年MM月dd日 H:mm:ss")))</td>
+    </tr>
+    <tr>
+        <th>来源类型</th>
+        <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Catagory))</td>
+    </tr>
+    <tr>
+        <th>审核状态</th>
+        <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Status))</td>
+    </tr>
+    <tr>
+        <th>链接地址</th>
+        <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Link))</td>
+    </tr>
+    <tr>
+        <th>主要内容</th>
+        <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Content))</td>
+    </tr>
+</table>

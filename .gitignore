@@ -3,3 +3,16 @@
 ################################################################################
 
 /JXGIS.Broadcast.Web/obj
+/JXGIS.Broadcast.Web/bin
+/JXGIS.Broadcast.Tool/bin/Debug
+/JXGIS.Broadcast.StaticLib/bin/Debug
+/JXGIS.Broadcast.Service/bin
+/JXGIS.Broadcast.Entity/bin
+/JXGIS.Broadcast.Business/bin
+/JXGIS.Broadcast.BaseLib/bin
+/JXGIS.Broadcast.Tool/obj
+/JXGIS.Broadcast.StaticLib/obj
+/JXGIS.Broadcast.Service/obj
+/JXGIS.Broadcast.Entity/obj
+/JXGIS.Broadcast.Business/obj
+/JXGIS.Broadcast.BaseLib/obj

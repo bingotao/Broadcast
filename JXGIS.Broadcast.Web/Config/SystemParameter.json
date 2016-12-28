@@ -1,0 +1,25 @@
+﻿{
+  "DbConStr": "Server=127.0.0.1;Database=BroadcastDB;User Id=broadcast;Password=@abcd1234;",
+  "ArcGISJSReferencePath": "127.0.0.1/arcgisapi_3.17/",
+  "Title": "嘉兴市便民信息播报平台",
+  "DefaultPage": "~/Broadcast/BroadcastMap",
+  "POIUrl": "http://www.jxmap.gov.cn/ZJDituWebService/Service.asmx/QueryPOI?&key={0}&pac=330400&type=&flds=&pageIndex={1}&pageStep={2}&taghead=&tagtail=",
+  "Extent": {
+    "spatialReference": {
+      "wkid": 4326
+    },
+    "xmin": 120.66488667091643,
+    "ymin": 30.706618499099605,
+    "xmax": 120.84101124367034,
+    "ymax": 30.819228362380855
+  },
+  "User": {
+    "ID": "00000000",
+    "UserName": "Admin",
+    "Password": "123456"
+  },
+  "RSA": {
+    "PublicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBQkSHnHyeM36xxeYu55rLCEd94twRDAAyuarYXyPZ6bqGGXUJu1+ZYLNSWIvwZgX7uAgXGAqXK6HQK+cU8msNw43gmQ3qPeW8pEEk+y+KlvWF2FnNeozqLM/NOQBrRypw9RdnvJy574L83E6x1QZwCmbbrSStqd0jE9c2Lu3+aQIDAQAB",
+    "PrivateKey": "MIICXAIBAAKBgQDBQkSHnHyeM36xxeYu55rLCEd94twRDAAyuarYXyPZ6bqGGXUJu1+ZYLNSWIvwZgX7uAgXGAqXK6HQK+cU8msNw43gmQ3qPeW8pEEk+y+KlvWF2FnNeozqLM/NOQBrRypw9RdnvJy574L83E6x1QZwCmbbrSStqd0jE9c2Lu3+aQIDAQABAoGBAKcw5kqP5fuTPyMauyWO9op5kiflME+LG0zG9XeU71Yhb119/pO5x13Qm7I8qmwCR2DaeB1Kjjbz51xJ7vNfOZ69IaoFbTi9qJ1Sj0Aa3u97BIPExj2LgEpm4q1JuY/Npg1UYw+cyRpCj36fbHvfl8vxqTPWI23ryJMqMMnURneBAkEA/4362JbTzG/Rf75vGF0CDanyYsKHxfDYImiPj+cw0rppwfNpee3VPYpkgVaw1wgsIc9AAXuJsg6PXMRnVa22GQJBAMGYflWm3NDcfuAqXMzMAwMbbAtqTJVXqSDjhruztJ0KCcfOqz1Y80NKVDm0X5hMVe+RTXXxGp2xuryfdjuBdNECQBAmuwnhTnWHQ6hdMsxJZI3Uhds0DDy4YhCapygjJnTLD1AQwEPSgj2nd36tKfQNMizY2mS9mBBG10y3pQhHOFECQGicEyALQ2Sk0PYmTfDoCHSkW7SrYuiL7rrz1zkT+POmmfRay5MhvolM38gynDk6fnEubdHeT4iIoiQMcqHi6RECQFmWWbFUZ313pEhB9oH/aQvshNtuBFYwLXbCdrB+BH8+rZbCw9g7RQKErenQ9wSFJOuRvoTBjNs04JZxcpLjVQc="
+  }
+}

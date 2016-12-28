@@ -1,0 +1,17 @@
+﻿<script src="~/Reference/Extend/jquery.min.js"></script>
+<script src="~/Reference/Extend/jsencrypt.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var pk = 
+        "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBQkSHnHyeM36xxeYu55rLCEd9" +
+        "4twRDAAyuarYXyPZ6bqGGXUJu1+ZYLNSWIvwZgX7uAgXGAqXK6HQK+cU8msNw43g" +
+        "mQ3qPeW8pEEk+y+KlvWF2FnNeozqLM/NOQBrRypw9RdnvJy574L83E6x1QZwCmbb" +
+        "rSStqd0jE9c2Lu3+aQIDAQAB";
+        var encrypt = new JSEncrypt();
+
+        var publicKey = encrypt.setPublicKey(pk);
+        var str = '123456';
+
+        var jmstr = encrypt.encrypt(str);
+    });
+</script>

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/favicon.ico" />
+    <script>
+        djConfig = {
+            locale: 'zh-cn',
+            serverIP: '@ViewBag.ArcGISJSReferencePath'
+        };
+
+        var _g = {
+            publicKey:"@Html.Raw(@ViewBag.PublicKey)",
+            base:"@Html.Raw(@ViewBag.BaseUrl)",
+            extent:@Html.Raw(@ViewBag.Extent),
+            constant: {
+                active: 'active',
+                target: 'target'
+            },
+            debug:@Html.Raw(@ViewBag.DEBUG)
+        };
+    </script>
+
+
+    @Styles.Render("~/Reference/Extend/normalize.css")
+    <link href="http://@ViewBag.ArcGISJSReferencePath/esri/css/esri.css" rel="stylesheet" />
+    @Styles.Render("~/Reference/Extend/bootstrap-3.3.5/css/bootstrap.min.css")
+    @Styles.Render("~/Reference/Extend/custom-scrollbar-plugin-3.1.5/jquery.mCustomScrollbar.min.css")
+    @Styles.Render("~/Reference/Extend/jquery-easyui-1.4.5/themes/bootstrap/easyui.css")
+    @Styles.Render("~/Reference/Extend/toastr-2.1.3/toastr.min.css")
+
+    @Scripts.Render("~/Reference/Extend/jquery.min.js")
+    @Scripts.Render("~/Reference/Extend/validate.min.js")
+    @Scripts.Render("~/Reference/Extend/store.min.js")
+    @Scripts.Render("~/Reference/Extend/bootstrap-3.3.5/js/bootstrap.min.js")
+    @Scripts.Render("~/Reference/Extend/custom-scrollbar-plugin-3.1.5/jquery.mCustomScrollbar.concat.min.js")
+    @Scripts.Render("~/Reference/Extend/jquery-easyui-1.4.5/jquery.easyui.min.js")
+    @Scripts.Render("~/Reference/Extend/jquery-easyui-1.4.5/locale/easyui-lang-zh_CN.js")
+    @Scripts.Render("~/Reference/Extend/toastr-2.1.3/toastr.min.js")
+    @Scripts.Render("~/Reference/Extend/jsencrypt.min.js")
+    <script src="http://@ViewBag.ArcGISJSReferencePath/init.js"></script>
+
+</head>
+<body class="broadcast">
+    @RenderBody()
+</body>
+</html>

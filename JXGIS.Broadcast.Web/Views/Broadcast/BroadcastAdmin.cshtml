@@ -1,0 +1,323 @@
+﻿@Styles.Render("~/Reference/Extend/kindeditor/themes/default/default.css")
+@Styles.Render("~/Views/Broadcast/css/BroadcastAdmin.css")
+
+@Scripts.Render("~/Reference/Extend/kindeditor/kindeditor-all-min.js")
+@Scripts.Render("~/Reference/Extend/kindeditor/zh-CN.js")
+
+@Scripts.Render("~/Reference/Extend/jquery-easyui-1.4.5/datagridview/datagrid-detailview.js")
+@Scripts.Render("~/Views/Broadcast/js/BroadcastAdmin.js")
+
+<div class="main">
+    <div class="bb-title">
+        <img src="~/Imgs/broadcast.png" />&nbsp;
+        <span class="bb-title-content">便民播报</span>&nbsp;
+        <span class="bb-title-time">2016年08月02日 星期二</span>
+        <span class="bb-login-btn"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;注销</span>
+    </div>
+    <div class="bb-broadcast-panel">
+        <div class="bb-broadcast-content">
+            <div class="bb-navbar clearfix">
+                <ul>
+                    <li class="active" data-target="bb-bbsh"><span class="glyphicon glyphicon-edit"></span>&nbsp;播报审核</li>
+                    <li data-target="bb-fbgl"><span class="glyphicon glyphicon-check"></span>&nbsp;发布管理</li>
+                    @if (ViewBag.IsAdmin)
+                    {
+                        <li data-target="bb-yhgl"><span class="glyphicon glyphicon-user"></span>&nbsp;用户管理</li>
+                    }
+                </ul>
+            </div>
+            <div class="bb-nav-panel clearfix">
+                <div class="bb-bbsh active">
+                    <table class="bb-bbsh-searchpanel">
+                        <tr>
+                            <th style="width:80px;">时间：</th>
+                            <td style="width:280px;"><input id="bbsh_date_begin" type="text" />&nbsp;~&nbsp;<input id="bbsh_date_end" type="text" /></td>
+                        </tr>
+                        <tr>
+                            <th>来源：</th>
+                            <td name="sourcetype">
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.SourceTypes.captured)">自动抓取</span>
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.SourceTypes.report)">用户上报</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>类别：</th>
+                            <td name="catagory">
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.electricity)">电力</span>
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.water)">自来水</span>
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.gas)">天然气</span>
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bicycle)">自行车</span>
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)">公交</span>
+
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)">交通限行</span>
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.)">土地资讯</span>
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.others)">其他</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>审核状态：</th>
+                            <td name="status">
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.ReviewStatusTypes.pending)">待审核</span>
+                                <span class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.ReviewStatusTypes.passed)">已通过</span>
+                                <span class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.ReviewStatusTypes.unpassed)">未通过</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>关键字：</th>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" class="form-control txt-search" placeholder="请输入关键字...">
+                                    <span class="input-group-addon btn-search">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="bb-bbsh-tool-bar clearfix">
+                        <span>信息审核列表</span>
+                        <span class="bb-com-btn"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;删除</span>
+                        <span class="bb-com-btn"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;发布</span>
+                    </div>
+                    <div class="bb-bbsh-result">
+                        <table id="dgSH" style="height:260px;"></table>
+                    </div>
+                </div>
+                <div class="bb-fbgl">
+                    <table class="bb-fbgl-searchpanel">
+                        <tr>
+                            <th style="width:80px;">发布时间：</th>
+                            <td style="width:280px;"><input id="fbgl_date_begin" type="text" />&nbsp;~&nbsp;<input id="fbgl_date_end" type="text" /></td>
+                        </tr>
+
+                        <tr>
+                            <th>紧急程度：</th>
+                            <td>
+                                <span name="urgency" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.UrgencyTypes.general)">一般</span>
+                                <span name="urgency" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.UrgencyTypes.important)">重要</span>
+                                <span name="urgency" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.UrgencyTypes.urgent)">紧急</span>
+                                <span name="urgency" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.UrgencyTypes.mosturgent)">非常紧急</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>类别：</th>
+                            <td>
+                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.electricity)">电力</span>
+                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.water)">自来水</span>
+                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.gas)">天然气</span>
+                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bicycle)">自行车</span>
+                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)">公交</span>
+                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.others)">其他</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <span name="status" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.PublishStatusTypes.published)">已发布</span>
+                                <span name="status" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.PublishStatusTypes.unpublished)">未发布</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label><input type="checkbox" class="expire" />&nbsp;已过期</label>
+                                &nbsp;&nbsp;
+                                <label><input type="checkbox" class="feedback" />&nbsp;有反馈</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>关键字：</th>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" class="form-control keyword" placeholder="请输入关键字...">
+                                    <span class="input-group-addon btn-query">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="bb-fbgl-toolbar clearfix">
+                        <span>发布信息列表</span>
+                        <span class="bb-com-btn"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;删除</span>
+                        <span class="bb-com-btn"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;修改</span>
+                        <span class="bb-com-btn"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;新增</span>
+                    </div>
+                    <div class="bb-fbgl-result">
+                        <table id="dgFBGL" style="height:260px;"></table>
+                    </div>
+                </div>
+
+
+                @if (ViewBag.IsAdmin)
+                {
+                    <div class="bb-yhgl">
+                        <div>
+                            <table id="dgYHGL" style="height:415px;"></table>
+                        </div>
+                        <div class="bb-yhgl-toolbar clearfix">
+                            <span class="bb-com-btn"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;删除</span>
+                            <span class="bb-com-btn"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;修改</span>
+                            <span class="bb-com-btn"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;新增</span>
+                        </div>
+                        <div class="bb-yhgl-editpanel">
+                            <span class="bb-yhgl-close glyphicon glyphicon-remove"></span>
+                            <div class="bb-yhgl-title">新增用户</div>
+                            <form name="user_form">
+                                <table>
+                                    <tr>
+                                        <th>用户名</th>
+                                        <td>
+                                            <input name="ID" type="hidden" />
+                                            <input name="UserName" type="text" class="form-control" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>密码</th>
+                                        <td>
+                                            <input name="Password" type="password" class="form-control" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>确认密码</th>
+                                        <td>
+                                            <input name="VPassword" type="password" class="form-control" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            <span class="bb-com-btn"><span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;保存</span>
+                                            <span class="bb-com-btn"><span class="glyphicon glyphicon-remove-sign"></span>&nbsp;&nbsp;取消</span>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="bb-publish-panel">
+        <form name="publish_form">
+            <span class="bb-publish-close glyphicon glyphicon-remove"></span>
+            <div class="bb-publish-title"></div>
+            <table>
+                <tr>
+                    <th style="width:25%;">发布标题：</th>
+                    <td style="width:75%;" colspan="3">
+                        <input name="ID" type="hidden" />
+                        <input name="SourceID" type="hidden" />
+                        <input name="SourceType" type="hidden" />
+                        <input name="Title" type="text" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>发布类型：</th>
+                    <td colspan="3">
+                        <input name="Catagory" type="hidden" />
+                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.electricity)">电力</span>
+                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.water)">自来水</span>
+                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.gas)">天然气</span>
+                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bicycle)">自行车</span>
+                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)">公交</span>
+                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.others)">其他</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>重要程度：</th>
+                    <td colspan="3">
+                        <input name="Urgency" type="hidden" />
+                        <span name="urgency-level" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.UrgencyTypes.general)">一般</span>
+                        <span name="urgency-level" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.UrgencyTypes.important)">重要</span>
+                        <span name="urgency-level" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.UrgencyTypes.urgent)">紧急</span>
+                        <span name="urgency-level" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.UrgencyTypes.mosturgent)">非常紧急</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>发布内容：</th>
+                    <td colspan="3">
+                        <textarea name="Content" class="form-control" style="height:130px;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>具体位置：</th>
+                    <td>
+                        <input name="Geometry" type="hidden" />
+                        <span class="bb-com-btn"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;选择位置</span>
+                    </td>
+                    <th>反馈信息：</th>
+                    <td>
+                        <span class="bb-com-btn"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;查看反馈</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>发布时间：</th>
+                    <td>
+                        <input id="publish_date" type="text" />
+                    </td>
+                    <th>过期时间：</th>
+                    <td>
+                        <input id="expiration_date" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>发布状态：</th>
+                    <td colspan="3">
+                        <input name="Status" type="hidden" />
+                        <span name="publish-status" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.PublishStatusTypes.published)"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;&nbsp;已发布</span>
+                        <span name="publish-status" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.PublishStatusTypes.unpublished)"><span class="glyphicon glyphicon-remove-sign"></span>&nbsp;&nbsp;未发布</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="padding:15px;text-align:center;">
+                        <span class="bb-com-btn btn-save"><span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;保存</span>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="bb-location-panel">
+                <div class="bb-locationbar clearfix">
+                    <ul class="bb-drawtools">
+                        <li class="draw-point" data-value="point" title="绘制点"></li>
+                        <li class="draw-polyline" data-value="polyline" title="绘制线"></li>
+                        <li class="draw-polygon" data-value="polygon" title="绘制面"></li>
+                        <li class="bb-location-search" title="查找位置"><span class="glyphicon glyphicon-search"></span></li>
+                        <li class="bb-location-import" title="导入"><span class="glyphicon glyphicon-floppy-open"></span></li>
+                        <li class="draw-drop" title="丢弃"></li>
+                    </ul>
+                </div>
+                <div class="location-search-panel">
+                    <div></div>
+                </div>
+                <div class="draw-items-panel">
+                    <div class="draw-items-title">已绘图形（<span class="graphic-count">0</span>）</div>
+                    <div class="draw-items">
+                    </div>
+                </div>
+                <div class="location-btns">
+                    <span class="bb-com-btn"><span class="glyphicon glyphicon-remove-sign"></span>&nbsp;&nbsp;取消</span>
+                    &nbsp;&nbsp;
+                    <span class="bb-com-btn"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;&nbsp;确定</span>
+                </div>
+            </div>
+            <div id="feedbackPanel">
+
+            </div>
+        </form>
+    </div>
+
+    <div class="bb-urgency-level clearfix">
+        <span>紧急程度：</span>
+        <span>低</span>
+        <ul class="bb-urgency-levels">
+            <li class="level1"></li>
+            <li class="level2"></li>
+            <li class="level3"></li>
+            <li class="level4"></li>
+        </ul>
+        <span>高</span>
+    </div>
+
+    <div id="map">
+    </div>
+
+</div>

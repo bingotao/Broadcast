@@ -1,0 +1,8 @@
+﻿{
+  "DbConStr": "Server=127.0.0.1;Database=BroadcastDB;User Id=broadcast;Password=@abcd1234;",
+  //"DbConStr":"Data Source =10.22.112.197\\SQL2012;Initial Catalog =TopSystemDB;User ID=tpsys;Password=`sqlserver;",
+  "ArcGISJSReferencePath": "127.0.0.1/arcgisapi_3.17/",
+  "JavascriptReferencePath": "/Reference",
+  "Title": "嘉兴天地图便民播报系统",
+  "POIUrl": "http://www.jxmap.gov.cn/ZJDituWebService/Service.asmx/QueryPOI?&key={0}&pac=330400&type=&flds=&pageIndex={1}&pageStep={2}&taghead=&tagtail="
+}

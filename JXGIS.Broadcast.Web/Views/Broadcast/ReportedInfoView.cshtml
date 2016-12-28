@@ -1,0 +1,28 @@
+﻿@model  JXGIS.Broadcast.Entity.ReportInfo
+<table>
+    <tr>
+        <th style="width:30%;">标题</th>
+        <td style="width:70%;">@Html.Raw(HttpUtility.HtmlDecode(Model.Title))</td>
+    </tr>
+    <tr>
+        <th>上报时间</th>
+        <td>@Html.Raw(HttpUtility.HtmlDecode(((DateTime)Model.ReportTime).ToString("yyyy年MM月dd日 H:mm:ss")))</td>
+    </tr>
+    <tr>
+        <th>审核状态</th>
+        <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Status))</td>
+    </tr>
+    <tr>
+        <th>内容</th>
+        <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Content))</td>
+    </tr>
+    <tr>
+        <th>联系方式</th>
+        <td>@Html.Raw(HttpUtility.HtmlDecode(Model.ContactInfo))</td>
+    </tr>
+   
+    <tr>
+        <th>客户端</th>
+        <td>@Html.Raw(HttpUtility.HtmlDecode(Model.ClientInfo))</td>
+    </tr>
+</table>
