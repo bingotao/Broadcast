@@ -22,7 +22,7 @@
                     <li data-target="bb-fbgl"><span class="glyphicon glyphicon-check"></span>&nbsp;发布管理</li>
                     @if (ViewBag.IsAdmin)
                     {
-                        <li data-target="bb-yhgl"><span class="glyphicon glyphicon-user"></span>&nbsp;用户管理</li>
+                    <li data-target="bb-yhgl"><span class="glyphicon glyphicon-user"></span>&nbsp;用户管理</li>
                     }
                 </ul>
             </div>
@@ -43,14 +43,15 @@
                         <tr>
                             <th>类别：</th>
                             <td name="catagory">
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bicycle)">自行车</span>
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)">公交</span>
+                                @*新增“交通限行”以及“土地资讯”*@
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.trafficLimits)">交通限行</span>
+                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.landInfomations)">土地资讯</span>
+                                <div class="select-item-split"></div>
                                 <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.electricity)">电力</span>
                                 <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.water)">自来水</span>
                                 <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.gas)">天然气</span>
-                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bicycle)">自行车</span>
-                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)">公交</span>
-
-                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)">交通限行</span>
-                                <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.)">土地资讯</span>
                                 <span class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.others)">其他</span>
                             </td>
                         </tr>
@@ -103,11 +104,15 @@
                         <tr>
                             <th>类别：</th>
                             <td>
+                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bicycle)">自行车</span>
+                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)">公交</span>
+                                @*新增“交通限行”以及“土地资讯”*@
+                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.trafficLimits)">交通限行</span>
+                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.landInfomations)">土地资讯</span>
+                                <div class="select-item-split"></div>
                                 <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.electricity)">电力</span>
                                 <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.water)">自来水</span>
                                 <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.gas)">天然气</span>
-                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bicycle)">自行车</span>
-                                <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)">公交</span>
                                 <span name="catagory" class="select-item active" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.others)">其他</span>
                             </td>
                         </tr>
@@ -148,50 +153,50 @@
 
                 @if (ViewBag.IsAdmin)
                 {
-                    <div class="bb-yhgl">
-                        <div>
-                            <table id="dgYHGL" style="height:415px;"></table>
-                        </div>
-                        <div class="bb-yhgl-toolbar clearfix">
-                            <span class="bb-com-btn"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;删除</span>
-                            <span class="bb-com-btn"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;修改</span>
-                            <span class="bb-com-btn"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;新增</span>
-                        </div>
-                        <div class="bb-yhgl-editpanel">
-                            <span class="bb-yhgl-close glyphicon glyphicon-remove"></span>
-                            <div class="bb-yhgl-title">新增用户</div>
-                            <form name="user_form">
-                                <table>
-                                    <tr>
-                                        <th>用户名</th>
-                                        <td>
-                                            <input name="ID" type="hidden" />
-                                            <input name="UserName" type="text" class="form-control" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>密码</th>
-                                        <td>
-                                            <input name="Password" type="password" class="form-control" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>确认密码</th>
-                                        <td>
-                                            <input name="VPassword" type="password" class="form-control" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th></th>
-                                        <th>
-                                            <span class="bb-com-btn"><span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;保存</span>
-                                            <span class="bb-com-btn"><span class="glyphicon glyphicon-remove-sign"></span>&nbsp;&nbsp;取消</span>
-                                        </th>
-                                    </tr>
-                                </table>
-                            </form>
-                        </div>
+                <div class="bb-yhgl">
+                    <div>
+                        <table id="dgYHGL" style="height:450px;"></table>
                     </div>
+                    <div class="bb-yhgl-toolbar clearfix">
+                        <span class="bb-com-btn"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;删除</span>
+                        <span class="bb-com-btn"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;修改</span>
+                        <span class="bb-com-btn"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;新增</span>
+                    </div>
+                    <div class="bb-yhgl-editpanel">
+                        <span class="bb-yhgl-close glyphicon glyphicon-remove"></span>
+                        <div class="bb-yhgl-title">新增用户</div>
+                        <form name="user_form">
+                            <table>
+                                <tr>
+                                    <th>用户名</th>
+                                    <td>
+                                        <input name="ID" type="hidden" />
+                                        <input name="UserName" type="text" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>密码</th>
+                                    <td>
+                                        <input name="Password" type="password" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>确认密码</th>
+                                    <td>
+                                        <input name="VPassword" type="password" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        <span class="bb-com-btn"><span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;保存</span>
+                                        <span class="bb-com-btn"><span class="glyphicon glyphicon-remove-sign"></span>&nbsp;&nbsp;取消</span>
+                                    </th>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
                 }
             </div>
         </div>
@@ -214,11 +219,16 @@
                     <th>发布类型：</th>
                     <td colspan="3">
                         <input name="Catagory" type="hidden" />
+
+                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bicycle)">自行车</span>
+                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)">公交</span>
+                        @*新增“交通限行”以及“土地资讯”*@
+                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.trafficLimits)">交通限行</span>
+                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.landInfomations)">土地资讯</span>
+                        <div class="select-item-split"></div>
                         <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.electricity)">电力</span>
                         <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.water)">自来水</span>
                         <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.gas)">天然气</span>
-                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bicycle)">自行车</span>
-                        <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)">公交</span>
                         <span name="publish-type" class="select-item" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.others)">其他</span>
                     </td>
                 </tr>
@@ -318,6 +328,9 @@
     </div>
 
     <div id="map">
+        <div class="ct-toolbar">
+            <span class="glyphicon glyphicon-globe" title="底图切换"></span>
+        </div>
     </div>
 
 </div>

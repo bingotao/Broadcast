@@ -11,7 +11,9 @@
      'lib/Utils/loaders',
      'lib/symbols',
      'lib/TDTLayer/TDTVecLayer',
-     'lib/TDTLayer/TDTAnnoLayer',
+     'lib/TDTLayer/TDTVecAnnoLayer',
+     'lib/TDTLayer/TDTImgLayer',
+     'lib/TDTLayer/TDTImgAnnoLayer',
      'widgets/feedbackPanel',
      'dojo/domReady!'
 ],
@@ -28,7 +30,9 @@ function (
     loaders,
     symbols,
     TDTVecLayer,
-    TDTAnnoLayer,
+    TDTVecAnnoLayer,
+    TDTImgLayer,
+    TDTImgAnnoLayer,
     FeedbackPanel
     ) {
     toastr.options.positionClass = 'toast-bottom-full-width';
@@ -58,11 +62,23 @@ function InitMap() {
     var map = new esri.Map('map', { logo: false, sliderPosition: 'top-right', extent: extent });
 
     var tdtVecLayer = new TDTVecLayer();
-    var tdtAnnoLayer = new TDTAnnoLayer();
+    var tdtVecAnnoLayer = new TDTVecAnnoLayer();
+    var tdtImgLayer = new TDTImgLayer({ visible: false });
+    var tdtImgAnnoLayer = new TDTImgAnnoLayer({ visible: false });
     var drawLayer = new esri.layers.GraphicsLayer({ id: 'drawLayer' });
 
-    map.addLayers([tdtVecLayer, tdtAnnoLayer, drawLayer]);
+    map.addLayers([tdtVecLayer, tdtVecAnnoLayer, tdtImgLayer, tdtImgAnnoLayer, drawLayer]);
     var scaleBar = new esri.dijit.Scalebar({ map: map, attachTo: 'bottom-right', scalebarUnit: 'dual' });
+
+    var $btnLayerToggle = $('.ct-toolbar .glyphicon-globe');
+    $btnLayerToggle.on('click', function () {
+        $btnLayerToggle.toggleClass('active');
+        var has = $btnLayerToggle.hasClass('active');
+        tdtVecLayer.setVisibility(!has);
+        tdtVecAnnoLayer.setVisibility(!has);
+        tdtImgLayer.setVisibility(has);
+        tdtImgAnnoLayer.setVisibility(has);
+    });
 
     _g.map = map;
     _g.drawLayer = drawLayer;

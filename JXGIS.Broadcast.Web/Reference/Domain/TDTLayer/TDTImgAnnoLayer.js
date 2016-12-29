@@ -1,5 +1,5 @@
 ﻿define(["dojo/_base/declare", "esri/layers/tiled"], function (declare) {
-    return declare('TDTAnnoLayer', esri.layers.TiledMapServiceLayer, {
+    return declare('TDTImgAnnoLayer', esri.layers.TiledMapServiceLayer, {
         constructor: function () {
             this.spatialReference = new esri.SpatialReference({ wkid: 4326 });
             this.initialExtent = (this.fullExtent = new esri.geometry.Extent(-180.0, -90.0, 180.0, 90.0, this.spatialReference));
@@ -44,12 +44,28 @@
 
         getTileUrl: function (level, row, col) {
             if (level < 14) {
-                return "http://t0.tianditu.cn/cva_c/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=c&TILEMATRIX=" + level + "&TILEROW=" + row + "&TILECOL=" + col + "&FORMAT=tiles";
+                return "http://t0.tianditu.com/cia_c/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cia&STYLE=default&TILEMATRIXSET=c&TILEMATRIX=" + level + "&TILEROW=" + row + "&TILECOL=" + col + "&FORMAT=tiles";
             }
             if (level < 18) {
-                return "http://srv.zjditu.cn/ZJEMAPANNO_2D/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ZJEMAPANNO&STYLE=default&TILEMATRIXSET=TileMatrixSet0&TILEMATRIX=" + level + "&TILEROW=" + row + "&TILECOL=" + col + "&FORMAT=image/png";
+                return "http://srv.zjditu.cn/ZJDOMANNO_2D/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ZJDOMANNO&STYLE=default&TILEMATRIXSET=TileMatrixSet0&TILEMATRIX=" + level + "&TILEROW=" + row + "&TILECOL=" + col + "&FORMAT=image/png";
             }
-            return "http://220.191.220.90/JXEMAPANNO/service/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=JXEMAPANNO&STYLE=default&TILEMATRIXSET=TileMatrixSet0&TILEMATRIX=" + level + "&TILEROW=" + row + "&TILECOL=" + col + "&FORMAT=image/png";
+            return "http://220.191.220.90/JXIMGANNO/service/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=JXIMGANNO&STYLE=default&TILEMATRIXSET=TileMatrixSet0&TILEMATRIX=" + level + "&TILEROW=" + row + "&TILECOL=" + col + "&FORMAT=image/png";
         }
     });
 });
+
+//var emap_url = 'http://t0.tianditu.com/vec_c/wmts';
+//var emapsj_url = 'http://srv.zjditu.cn/ZJEMAP_2D/wmts';
+//var emapds_url = 'http://220.191.220.90/JXEMAP/service/wmts';
+
+//var emapanno_url = 'http://t0.tianditu.com/cva_c/wmts';
+//var emapannosj_url = 'http://srv.zjditu.cn/ZJEMAPANNO_2D/wmts';
+//var emapannods_url = 'http://220.191.220.90/JXEMAPANNO/service/wmts';
+
+//var img_url = 'http://t0.tianditu.com/img_c/wmts';
+//var imgsj_url = 'http://srv.zjditu.cn/ZJDOM_2D/wmts';
+//var imgds_url = 'http://220.191.220.90/JXIMG/service/wmts';
+
+//var imganno_url = 'http://t0.tianditu.com/cia_c/wmts';
+//var imgannosj_url = 'http://srv.zjditu.cn/ZJDOMANNO_2D/wmts';
+//var imgannods_url = 'http://220.191.220.90/JXIMGANNO/service/wmts';

@@ -14,7 +14,10 @@ require([
      'lib/Utils/typeUtils',
      'lib/symbols',
      'lib/TDTLayer/TDTVecLayer',
-     'lib/TDTLayer/TDTAnnoLayer',
+     'lib/TDTLayer/TDTVecAnnoLayer',
+     'lib/TDTLayer/TDTImgLayer',
+     'lib/TDTLayer/TDTImgAnnoLayer',
+     'esri/layers/ArcGISTiledMapServiceLayer',
      'widgets/detailWindow',
      'dojo/domReady!'
 ],
@@ -33,7 +36,10 @@ function (
     typeUtils,
     symbols,
     TDTVecLayer,
-    TDTAnnoLayer,
+    TDTVecAnnoLayer,
+    TDTImgLayer,
+    TDTImgAnnoLayer,
+    ArcGISTiledMapServiceLayer,
     DetailWindow
     ) {
     toastr.options.positionClass = 'toast-bottom-full-width';
@@ -60,7 +66,7 @@ function (
 function InitEventsSymbols() {
     var evtSymbols = {};
 
-    var catagory = ['电力', '自来水', '天然气', '自行车', '公交', '其他'];
+    var catagory = ['电力', '自来水', '天然气', '自行车', '公交', '交通限行', '土地资讯', '其他'];
     var urgency = ['一般', '重要', '紧急', '非常紧急'];
     for (var i = 0; i < catagory.length; i++) {
         var c = catagory[i];
@@ -132,10 +138,30 @@ function InitMap() {
         logo: false, slider: false, sliderPosition: 'top-right', extent: extent
     });
     var tdtVecLayer = new TDTVecLayer();
-    var tdtAnnoLayer = new TDTAnnoLayer();
+    var tdtVecAnnoLayer = new TDTVecAnnoLayer();
+
+    var tdtImgLayer = new TDTImgLayer({ visible: false });
+    var tdtImgAnnoLayer = new TDTImgAnnoLayer({ visible: false });
+
+    //var tdtImgLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://10.73.1.171:9001/JXPDServerCore/rest/services/MyJXPDMapService1/MapServer", { visible: false });
+    //var tdtImgAnnoLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://10.73.1.171:9001/JXPDServerCore/rest/services/MyJXPDMapService2/MapServer", { visible: false });
+
     var drawLayer = new esri.layers.GraphicsLayer({
         id: 'drawLayer'
     });
+
+    var $layerToggle = $('.map-tools .glyphicon-globe');
+
+    $layerToggle.on('click', function () {
+        $layerToggle.toggleClass('active');
+
+        var has = $layerToggle.hasClass('active');
+        tdtVecLayer.setVisibility(!has);
+        tdtVecAnnoLayer.setVisibility(!has);
+        tdtImgLayer.setVisibility(has);
+        tdtImgAnnoLayer.setVisibility(has);
+    });
+
     var eventLayer = new esri.layers.GraphicsLayer({
         id: 'eventLayer'
     });
@@ -156,7 +182,7 @@ function InitMap() {
 
     });
 
-    map.addLayers([tdtVecLayer, tdtAnnoLayer, drawLayer, eventLayer]);
+    map.addLayers([tdtVecLayer, tdtVecAnnoLayer, tdtImgLayer, tdtImgAnnoLayer, drawLayer, eventLayer]);
     var scaleBar = new esri.dijit.Scalebar({
         map: map, attachTo: 'bottom-right', scalebarUnit: 'dual'
     });
@@ -301,6 +327,16 @@ function InitBroadcastPanel() {
             case '公交':
                 c = {
                     cls: 'icon-bus'
+                };
+                break;
+            case '交通限行':
+                c = {
+                    cls: 'icon-trafficlimits'
+                };
+                break;
+            case '土地资讯':
+                c = {
+                    cls: 'icon-landinfomations'
                 };
                 break;
             case '其他':

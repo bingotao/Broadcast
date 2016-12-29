@@ -247,12 +247,14 @@
     <Content Include="Imgs\自行车_重要.png" />
     <Content Include="Imgs\自行车_非常紧急.png" />
     <Content Include="Reference\Domain\css\loaders.css" />
+    <Content Include="Reference\Domain\TDTLayer\TDTImgAnnoLayer.js" />
+    <Content Include="Reference\Domain\TDTLayer\TDTImgLayer.js" />
     <Content Include="Reference\Domain\Utils\excelExport.js" />
     <Content Include="Reference\Domain\Utils\loaders.js" />
     <Content Include="Reference\Domain\symbols.js" />
     <Content Include="Reference\Domain\Utils\geolocation.js" />
     <Content Include="Reference\Domain\Utils\typeUtils.js" />
-    <Content Include="Reference\Domain\TDTLayer\TDTAnnoLayer.js" />
+    <Content Include="Reference\Domain\TDTLayer\TDTVecAnnoLayer.js" />
     <Content Include="Reference\Domain\TDTLayer\TDTVecLayer.js" />
     <Content Include="Reference\Extend\bootstrap-3.3.5\css\bootstrap-theme.min.css" />
     <Content Include="Reference\Extend\bootstrap-3.3.5\css\bootstrap.min.css" />

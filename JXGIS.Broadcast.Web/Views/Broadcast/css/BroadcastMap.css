@@ -7,6 +7,18 @@
     font-family: 'Microsoft YaHei';
 }
 
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+}
+
 ul, li {
     list-style: none;
     margin: 0;
@@ -333,6 +345,14 @@ ul, li {
 
 .icon-water {
     background-image: url('../../../Imgs/water.png');
+}
+
+.icon-trafficlimits {
+    background-image: url('../../../Imgs/trafficlimit.png');
+}
+
+.icon-landinfomations {
+    background-image: url('../../../Imgs/landinfo.png');
 }
 
 .icon-others {
@@ -929,6 +949,11 @@ textarea.form-control {
             border-right: 1px #6f6f6f solid;
             border-radius: 0 3px 3px 0;
         }
+
+.glyphicon-globe.active {
+    color: white;
+    background-color: rgba(53,150,234,1);
+}
 
 #drawLayer_layer image, #eventLayer_layer image {
     cursor: pointer;
