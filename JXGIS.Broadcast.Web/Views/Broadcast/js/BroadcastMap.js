@@ -17,7 +17,9 @@ require([
      'lib/TDTLayer/TDTVecAnnoLayer',
      'lib/TDTLayer/TDTImgLayer',
      'lib/TDTLayer/TDTImgAnnoLayer',
-     'esri/layers/ArcGISTiledMapServiceLayer',
+     'esri/layers/FeatureLayer',
+     //'esri/layers/ArcGISTiledMapServiceLayer',
+     'esri/layers/ArcGISDynamicMapServiceLayer',
      'widgets/detailWindow',
      'dojo/domReady!'
 ],
@@ -39,15 +41,20 @@ function (
     TDTVecAnnoLayer,
     TDTImgLayer,
     TDTImgAnnoLayer,
-    ArcGISTiledMapServiceLayer,
+    FeatureLayer,
+    //ArcGISTiledMapServiceLayer,
+    ArcGISDynamicMapServiceLayer,
     DetailWindow
     ) {
+
+
     toastr.options.positionClass = 'toast-bottom-full-width';
     InitEventsSymbols();
 
     InitMap();
     InitDate();
-    InitBroadcastPanel();
+    //InitBroadcastPanel();
+    BroadcastPanel.init();
 
     InitWeather();
     InitReportPanel();
@@ -143,9 +150,6 @@ function InitMap() {
     var tdtImgLayer = new TDTImgLayer({ visible: false });
     var tdtImgAnnoLayer = new TDTImgAnnoLayer({ visible: false });
 
-    //var tdtImgLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://10.73.1.171:9001/JXPDServerCore/rest/services/MyJXPDMapService1/MapServer", { visible: false });
-    //var tdtImgAnnoLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://10.73.1.171:9001/JXPDServerCore/rest/services/MyJXPDMapService2/MapServer", { visible: false });
-
     var drawLayer = new esri.layers.GraphicsLayer({
         id: 'drawLayer'
     });
@@ -183,6 +187,11 @@ function InitMap() {
     });
 
     map.addLayers([tdtVecLayer, tdtVecAnnoLayer, tdtImgLayer, tdtImgAnnoLayer, drawLayer, eventLayer]);
+
+
+    //test = new esri.layers.ArcGISDynamicMapServiceLayer('http://127.0.0.1:6080/arcgis/rest/services/test_yc/MapServer');
+    //map.addLayer(test);
+
     var scaleBar = new esri.dijit.Scalebar({
         map: map, attachTo: 'bottom-right', scalebarUnit: 'dual'
     });
@@ -237,7 +246,7 @@ function InitDate() {
 }
 
 
-
+/*
 function InitBroadcastPanel() {
     var $broadcastPanel = $('.bb-broadcast-panel');
     var $navli = $('.bb-navbar li');
@@ -348,18 +357,26 @@ function InitBroadcastPanel() {
         return c;
     }
 
+    var eventLayerClickHandle = null;
+
     function InitPanel(items) {
         var $detailPanel = $('.bb-item-details');
+        var $itemContainer = $('.bb-items');
 
+        //清空面板
+        $itemContainer.empty();
         var eventLayer = _g.eventLayer;
+
+        //清空图层，注销事件
         eventLayer.clear();
-        eventLayer.on('click', function (evt) {
+        if (eventLayerClickHandle) eventLayerClickHandle.remove();
+
+        eventLayerClickHandle = eventLayer.on('click', function (evt) {
             $items.removeClass(aCls);
             $('#' + evt.graphic.attributes.ID).addClass(aCls);
             ShowEventInfo(evt.graphic.attributes);
         });
 
-        var $itemContainer = $('.bb-items');
         for (var i in items) {
             var item = items[i];
             var level = GetLevel(item.Urgency);
@@ -413,7 +430,6 @@ function InitBroadcastPanel() {
                         }), jxgis.symbols.G_RedSolid, {
                             on: true
                         });
-                        //var g2 = new esri.Graphic(new esri.geometry.Circle(geo, { radius: 20 }), jxgis.symbols.G_RedSolid2);
                         var g2 = new esri.Graphic(geo, jxgis.symbols.P_Red, {
                         });
                         _g.drawLayer.add(g1);
@@ -436,7 +452,6 @@ function InitBroadcastPanel() {
                     }), jxgis.symbols.G_RedSolid, {
                         on: true
                     });
-                    //var g2 = new esri.Graphic(new esri.geometry.Circle(geos, { radius: 20 }), jxgis.symbols.G_RedSolid2);
                     var g2 = new esri.Graphic(geos, jxgis.symbols.P_Red, {
                     });
                     _g.drawLayer.add(g1);
@@ -496,7 +511,7 @@ function InitBroadcastPanel() {
         }
 
 
-        $btnPanelToggle.on('click', function () {
+        $btnPanelToggle.off().on('click', function () {
             var $this = $(this);
             if (bPanelOn) {
                 $broadcastPanel.removeClass(aCls);
@@ -515,7 +530,7 @@ function InitBroadcastPanel() {
 
         var $items = $itemContainer.find('.bb-item');
 
-        $('.bb-nav-panel').hover(function () {
+        $('.bb-nav-panel').off().hover(function () {
             on = true;
         }, function () {
             on = false;
@@ -526,7 +541,7 @@ function InitBroadcastPanel() {
         var moveCount = 0;
         var canMoveCount = totalCount - visibleCount > 0 ? totalCount - visibleCount : 0;
 
-        $btnPause.on('click', function () {
+        $btnPause.off().on('click', function () {
             Reset();
             $btnPause.toggleClass(aCls).find('>span').toggleClass(playCls).toggleClass(pauseCls);
             if (!$btnPause.hasClass(aCls)) {
@@ -574,6 +589,433 @@ function InitBroadcastPanel() {
         }
     }
 }
+*/
+var BroadcastPanel = {
+    init: function () {
+        var cThis = this;
+
+        var $broadcastPanel = $('.bb-broadcast-panel');
+        var $navli = $('.bb-navbar li');
+        var $navPanel = $('.bb-nav-panel>div');
+        var $btnPanelToggle = $('.bb-ssbb-toggle');
+        var $btnPause = $broadcastPanel.find('.bb-ssbb-pause');
+        var $panel = $('#panel');
+        var $detailPanel = $('.bb-item-details');
+        var $itemContainer = $('.bb-items');
+        var $btnFilter = $('.bb-catalog-btn');
+        var $filterPanel = $('.bb-catalog');
+
+        this.$ = {
+            $broadcastPanel: $broadcastPanel,
+            $navli: $navli,
+            $navPanel: $navPanel,
+            $btnPanelToggle: $btnPanelToggle,
+            $btnPause: $btnPause,
+            $panel: $panel,
+            $detailPanel: $detailPanel,
+            $itemContainer: $itemContainer,
+            $btnFilter: $btnFilter,
+            $filterPanel: $filterPanel
+        };
+
+        this.const = {
+            playCls: 'glyphicon-play',
+            pauseCls: 'glyphicon-pause',
+            aCls: _g.constant.active,
+            fCls: 'focus'
+        };
+
+        this.state = {
+            bPanelOn: false,
+            on: false,
+            bPause: false,
+            visibleCount: 1,
+            eLayer: _g.eventLayer
+        };
+
+        this._initDomEvent();
+
+        $.post(baseUrl + 'GetPublish', function (rt) {
+            cThis.state.items = rt;
+            cThis.InitPanel(cThis.state.items);
+        }, 'json');
+    },
+    _initDomEvent: function () {
+        var cThis = this;
+        var $r = this.$;
+        var aCls = this.const.aCls;
+        var fCls = this.const.fCls;
+        var c = this.const;
+        var s = this.state;
+        $r.$navli.on('click', function () {
+            var $this = $(this);
+            var tCls = $this.data(_g.constant.target);
+
+            $r.$navli.removeClass(aCls);
+            $this.addClass(aCls);
+            $r.$navPanel.removeClass(aCls);
+            $r.$navPanel.filter('.' + tCls).addClass(aCls);
+
+            if (tCls == 'bb-wtsb') {
+                $r.$broadcastPanel.addClass(aCls);
+            } else if (s.bPanelOn) {
+                $r.$broadcastPanel.addClass(aCls);
+            } else {
+                $r.$broadcastPanel.removeClass(aCls);
+            }
+        });
+
+        $('.bb-nav-panel').hover(function () {
+            s.on = true;
+        }, function () {
+            s.on = false;
+        });
+
+        $r.$btnPause.on('click', function () {
+            cThis.Reset();
+            var $btnPause = $r.$btnPause,
+                $panel = $r.$panel,
+                $items = $r.$items,
+                playCls = c.playCls,
+                pauseCls = c.pauseCls;
+
+            $btnPause.toggleClass(aCls).find('>span').toggleClass(playCls).toggleClass(pauseCls);
+            if (!$btnPause.hasClass(aCls)) {
+                $panel.css({
+                    'overflow': 'hidden'
+                });
+                s.bPause = false;
+            } else {
+                $panel.css({
+                    'overflow': 'auto'
+                });
+                $items.removeClass(fCls);
+                s.bPause = true;
+            }
+            $panel.parent().toggleClass('active2');
+        });
+
+        $r.$btnPanelToggle.on('click', function () {
+            var $this = $(this);
+            if (s.bPanelOn) {
+                $r.$broadcastPanel.removeClass(aCls);
+                $this.removeClass(aCls);
+                s.visibleCount = 1;
+                $('.bb-item-details').removeClass('on');
+            } else {
+                $r.$broadcastPanel.addClass(aCls);
+                $this.addClass(aCls);
+                s.visibleCount = 10;
+                $('.bb-item-details').addClass('on');
+            }
+            s.bPanelOn = !s.bPanelOn;
+            cThis.Reset();
+        });
+
+        $r.$btnFilter.on('click', function () {
+            $r.$btnFilter.toggleClass(aCls);
+            if ($r.$btnFilter.hasClass(aCls)) {
+                $r.$filterPanel.addClass(aCls);
+            } else {
+                $r.$filterPanel.removeClass(aCls);
+            }
+            return false;
+        });
+
+        $r.$filterPanel.find('>span').on('click', function () {
+            $(this).toggleClass(aCls);
+            var filters = cThis.GetFilters();
+            var items = cThis.filterItems(filters);
+            cThis.InitPanel(items);
+            return false;
+        });
+
+        $(document).on('click', function () {
+            $r.$btnFilter.hasClass(aCls) && $r.$btnFilter.click();
+        });
+    },
+    GetFilters: function () {
+        var catagories = [];
+        this.$.$filterPanel.find('>span.active').each(function (i, item) {
+            catagories.push($(item).data('value'));
+        });
+        return catagories;
+    },
+    GetLevel: function (level) {
+        var l = '';
+        switch (level) {
+            case '一般':
+                l = 'level1';
+                break;
+            case '重要':
+                l = 'level2';
+                break;
+            case '紧急':
+                l = 'level3';
+                break;
+            case '非常紧急':
+                l = 'level4';
+                break;
+        }
+        return l;
+    },
+    GetCatagory: function (catagory) {
+        var c = {
+        };
+        switch (catagory) {
+            case '电力':
+                c = {
+                    cls: 'icon-power'
+                };
+                break;
+            case '自来水':
+                c = {
+                    cls: 'icon-water '
+                };
+                break;
+            case '天然气':
+                c = {
+                    cls: 'icon-gas'
+                };
+                break;
+            case '自行车':
+                c = {
+                    cls: 'icon-bicycle'
+                };
+                break;
+            case '公交':
+                c = {
+                    cls: 'icon-bus'
+                };
+                break;
+            case '交通限行':
+                c = {
+                    cls: 'icon-trafficlimits'
+                };
+                break;
+            case '土地资讯':
+                c = {
+                    cls: 'icon-landinfomations'
+                };
+                break;
+            case '其他':
+                c = {
+                    cls: 'icon-others'
+                };
+                break;
+        }
+        return c;
+    },
+    GetCenterPoint: function (geo) {
+        switch (geo.type) {
+            case 'point':
+                return geo;
+                break;
+            case 'polyline':
+                var path = geo.paths[0];
+                var index = parseInt(path.length / 2);
+
+                if (path.length % 2 == 0) {
+                    var x = (path[index][0] + path[index - 1][0]) / 2;
+                    var y = (path[index][1] + path[index - 1][1]) / 2;
+                    return esri.geometry.Point(x, y, _g.map.spatialReference);
+
+                } else {
+                    var x = path[index][0];
+                    var y = path[index][1];
+                    return esri.geometry.Point(x, y, _g.map.spatialReference);
+                }
+                break;
+            case 'polygon':
+                return geo.getCentroid();
+                break;
+        }
+
+    },
+    ShowEventInfo: function (attrs) {
+        _g.drawLayer.clear();
+        var geos = jxgis.geoUtils.toGeometry(attrs.Geometry);
+        var graphics = [];
+
+        if (jxgis.typeUtils.isArray(geos)) {
+            for (var j in geos) {
+                var geo = geos[j];
+                if (geo.type == 'point') {
+                    var g1 = new esri.Graphic(new esri.geometry.Circle(geo, {
+                        radius: 100
+                    }), jxgis.symbols.G_RedSolid, {
+                        on: true
+                    });
+                    var g2 = new esri.Graphic(geo, jxgis.symbols.P_Red, {
+                    });
+                    _g.drawLayer.add(g1);
+                    graphics.push(g1);
+                    _g.drawLayer.add(g2);
+                    graphics.push(g2);
+                }
+                else {
+                    var g = new esri.Graphic(geo, this.GetSymbol(geo), {
+                        on: true
+                    });
+                    _g.drawLayer.add(g);
+                    graphics.push(g);
+                }
+            }
+        } else {
+            if (geos.type == 'point') {
+                var g1 = new esri.Graphic(new esri.geometry.Circle(geos, {
+                    radius: 100
+                }), jxgis.symbols.G_RedSolid, {
+                    on: true
+                });
+                var g2 = new esri.Graphic(geos, jxgis.symbols.P_Red, {
+                });
+                _g.drawLayer.add(g1);
+                graphics.push(g1);
+                _g.drawLayer.add(g2);
+                graphics.push(g2);
+            }
+            else {
+                var g = new esri.Graphic(geos, this.GetSymbol(geos), {
+                    on: true
+                });
+                _g.drawLayer.add(g);
+                graphics.push(g);
+            }
+        }
+
+        this.ShowDetailPanel(attrs);
+        return graphics;
+    },
+    GetSymbol: function (geo) {
+        switch (geo.type) {
+            case 'point':
+                return jxgis.symbols.P_Red;
+            case 'polyline':
+                return jxgis.symbols.L_RedSolid;
+            case 'polygon':
+                return jxgis.symbols.G_Red;
+        }
+    },
+    ShowDetailPanel: function (item) {
+        var detailPanel = dijit.byId('itemDetail')
+        detailPanel.setDetail(item);
+        detailPanel.show();
+    },
+    Reset: function () {
+        var $r = this.$;
+        var s = this.state;
+        var fCls = this.const.fCls;
+
+        $r.$panel.scrollTop(0);
+        s.canMoveCount = s.totalCount - s.visibleCount > 0 ? s.totalCount - s.visibleCount : 0;
+        s.moveCount = 0;
+        $r.$itemContainer.css('margin-top', 0);
+        $r.$items.removeClass(fCls).first().addClass(fCls);
+    },
+    moveItem: function () {
+        var s = this.state;
+        var $r = this.$;
+        var fCls = this.const.fCls;
+
+        if (s.canMoveCount <= s.moveCount) {
+            s.moveCount = 0;
+            $r.$itemContainer.css('margin-top', 0);
+            $r.$items.removeClass(fCls);
+            $($r.$items.get(s.moveCount)).addClass(fCls);
+        } else {
+            $r.$itemContainer.animate({
+                marginTop: '-=44px'
+            }, 300, function () {
+                $r.$items.removeClass(fCls);
+                $($r.$items.get(s.moveCount)).addClass(fCls);
+            });
+            s.moveCount++;
+        }
+    },
+    filterItems: function (categories) {
+        if (!categories || !categories.length) {
+            return this.state.items;
+        } else {
+            return this.state.items.map(function (i) {
+                return categories.indexOf(i.Catagory) > -1 ? i : null;
+            }).filter(function (i) {
+                return !!i;
+            });
+        }
+    },
+    InitPanel: function (items) {
+        var cThis = this;
+        var $r = this.$;
+        var s = this.state;
+        var c = this.const;
+        var fCls = c.fCls;
+        var aCls = c.aCls;
+
+        //清空面板，图层
+        $r.$itemContainer.empty();
+        var eLayer = s.eLayer;
+
+        //清空图层，注销事件
+        eLayer.clear();
+        if (s.eLayerHandle) s.eLayerHandle.remove();
+
+        s.eLayerHandle = eLayer.on('click', function (evt) {
+            $r.$items.removeClass(aCls);
+            $('#' + evt.graphic.attributes.ID).addClass(aCls);
+            cThis.ShowEventInfo(evt.graphic.attributes);
+        });
+
+        for (var i in items) {
+            var item = items[i];
+            var level = this.GetLevel(item.Urgency);
+            var catagory = this.GetCatagory(item.Catagory);
+            var $item = $('<div id="' + item.ID + '" class="bb-item clearfix"><span class="bb-item-icon' + ' ' + level + ' ' + ' ' + catagory.cls + ' ' + '"></span><span class="bb-item-title">' + item.Title + '</span><span class="bb-item-time">' + item.PublishTime + '</span></div>');
+            $item.data('value', item);
+            $item.appendTo($r.$itemContainer);
+            $item.on('click', function () {
+                $r.$items.removeClass(aCls);
+                var $this = $(this);
+                $this.addClass(aCls);
+                var v = $this.data('value');
+                var graphics = cThis.ShowEventInfo(v);
+                _g.map.setExtent(esri.graphicsExtent(graphics), true);
+            });
+
+            var geos = jxgis.geoUtils.toGeometry(item.Geometry);
+            if (jxgis.typeUtils.isArray(geos)) {
+                for (var j in geos) {
+                    var geo = geos[j];
+                    var p = cThis.GetCenterPoint(geo);
+                    var g = new esri.Graphic(p, jxgis.symbols.evtSymbols[item.Catagory + '_' + item.Urgency], item);
+                    eLayer.add(g);
+                }
+            } else {
+                var p = cThis.GetCenterPoint(geos);
+                var g = new esri.Graphic(p, jxgis.symbols.evtSymbols[item.Catagory + '_' + item.Urgency], item);
+                eLayer.add(g);
+            }
+        }
+
+        $r.$items = $r.$itemContainer.find('.bb-item');
+        $r.$items.first().addClass(fCls);
+
+        var totalCount = $r.$items.length;
+        var moveCount = 0;
+        var canMoveCount = totalCount - s.visibleCount > 0 ? totalCount - s.visibleCount : 0;
+
+        s.totalCount = totalCount;
+        s.moveCount = moveCount;
+        s.canMoveCount = canMoveCount;
+
+        if (cThis.moveHandle) {
+            window.clearInterval(cThis.moveHandle);
+        }
+        cThis.moveHandle = setInterval(function () {
+            if (!s.on && !s.bPause) cThis.moveItem();
+        }, 3000);
+    }
+};
 
 function InitReportPanel() {
     var $drawBtn = $('.draw-point');

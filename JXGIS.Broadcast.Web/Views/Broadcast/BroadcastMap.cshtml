@@ -19,7 +19,16 @@
             </div>
             <div class="bb-nav-panel clearfix">
                 <div class="bb-ssbb active active2">
-
+                    <span class="bb-catalog-btn glyphicon glyphicon-filter">
+                        <span class="glyphicon glyphicon-filter"></span>
+                    </span>
+                    <div class="bb-catalog">
+                        <span class="bb-catalog-item bicycle" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bicycle)"></span>
+                        <span class="bb-catalog-item bus" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.bus)"></span>
+                        <span class="bb-catalog-item trafficlimits" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.trafficLimits)"></span>
+                        <span class="bb-catalog-item landinfomations" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.landInfomations)"></span>
+                        <span class="bb-catalog-item others" data-value="@Html.Raw(JXGIS.Broadcast.Entity.CatagoryTypes.others)"></span>
+                    </div>
                     <div id="panel" style="height:100%;width:100%;overflow:hidden;">
                         <div class="bb-items active">
                         </div>

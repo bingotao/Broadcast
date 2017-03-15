@@ -185,6 +185,7 @@
     <Content Include="Imgs\index_maincontent.png" />
     <Content Include="Imgs\index_maincontent2.png" />
     <Content Include="Imgs\index_maincontent3.png" />
+    <Content Include="Imgs\index_maincontent4.png" />
     <Content Include="Imgs\landinfo.png" />
     <Content Include="Imgs\level1.png" />
     <Content Include="Imgs\level2.png" />
@@ -211,6 +212,7 @@
     <Content Include="Imgs\location-violet.png" />
     <Content Include="Imgs\location-green.png" />
     <Content Include="Imgs\question.png" />
+    <Content Include="Imgs\roadrepair.png" />
     <Content Include="Imgs\toolbox.png" />
     <Content Include="Imgs\trafficlimit.png" />
     <Content Include="Imgs\water.png" />
@@ -246,6 +248,10 @@
     <Content Include="Imgs\自行车_紧急.png" />
     <Content Include="Imgs\自行车_重要.png" />
     <Content Include="Imgs\自行车_非常紧急.png" />
+    <Content Include="Imgs\道路维修_一般.png" />
+    <Content Include="Imgs\道路维修_紧急.png" />
+    <Content Include="Imgs\道路维修_重要.png" />
+    <Content Include="Imgs\道路维修_非常紧急.png" />
     <Content Include="Reference\Domain\css\loaders.css" />
     <Content Include="Reference\Domain\TDTLayer\TDTImgAnnoLayer.js" />
     <Content Include="Reference\Domain\TDTLayer\TDTImgLayer.js" />

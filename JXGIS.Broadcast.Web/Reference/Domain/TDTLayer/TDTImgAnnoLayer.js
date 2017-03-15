@@ -53,19 +53,3 @@
         }
     });
 });
-
-//var emap_url = 'http://t0.tianditu.com/vec_c/wmts';
-//var emapsj_url = 'http://srv.zjditu.cn/ZJEMAP_2D/wmts';
-//var emapds_url = 'http://220.191.220.90/JXEMAP/service/wmts';
-
-//var emapanno_url = 'http://t0.tianditu.com/cva_c/wmts';
-//var emapannosj_url = 'http://srv.zjditu.cn/ZJEMAPANNO_2D/wmts';
-//var emapannods_url = 'http://220.191.220.90/JXEMAPANNO/service/wmts';
-
-//var img_url = 'http://t0.tianditu.com/img_c/wmts';
-//var imgsj_url = 'http://srv.zjditu.cn/ZJDOM_2D/wmts';
-//var imgds_url = 'http://220.191.220.90/JXIMG/service/wmts';
-
-//var imganno_url = 'http://t0.tianditu.com/cia_c/wmts';
-//var imgannosj_url = 'http://srv.zjditu.cn/ZJDOMANNO_2D/wmts';
-//var imgannods_url = 'http://220.191.220.90/JXIMGANNO/service/wmts';

@@ -6,7 +6,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>E:\Code\Broadcast_Publish</_PublishTargetUrl>
+    <_PublishTargetUrl>E:\工作\Code\06 天地图便民播报\Publish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -31,16 +31,16 @@
       <publishTime>07/29/2016 11:35:04</publishTime>
     </File>
     <File Include="bin/JXGIS.Broadcast.BaseLib.dll">
-      <publishTime>10/09/2016 08:42:20</publishTime>
+      <publishTime>02/28/2017 09:59:37</publishTime>
     </File>
     <File Include="bin/JXGIS.Broadcast.Business.dll">
-      <publishTime>10/09/2016 08:42:20</publishTime>
+      <publishTime>02/28/2017 09:59:38</publishTime>
     </File>
     <File Include="bin/JXGIS.Broadcast.Entity.dll">
-      <publishTime>10/09/2016 08:42:19</publishTime>
+      <publishTime>02/28/2017 09:59:37</publishTime>
     </File>
     <File Include="bin/JXGIS.Broadcast.Web.dll">
-      <publishTime>10/11/2016 16:27:52</publishTime>
+      <publishTime>02/28/2017 09:59:42</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>08/06/2015 12:16:50</publishTime>
@@ -201,6 +201,12 @@
     <File Include="Imgs/index_maincontent3.png">
       <publishTime>10/11/2016 16:22:32</publishTime>
     </File>
+    <File Include="Imgs/index_maincontent4.png">
+      <publishTime>01/05/2017 11:23:41</publishTime>
+    </File>
+    <File Include="Imgs/landinfo.png">
+      <publishTime>12/28/2016 14:54:02</publishTime>
+    </File>
     <File Include="Imgs/level1.png">
       <publishTime>09/01/2016 09:40:06</publishTime>
     </File>
@@ -276,11 +282,29 @@
     <File Include="Imgs/question.png">
       <publishTime>08/23/2016 14:34:42</publishTime>
     </File>
+    <File Include="Imgs/roadrepair.png">
+      <publishTime>01/05/2017 13:30:41</publishTime>
+    </File>
     <File Include="Imgs/toolbox.png">
       <publishTime>08/04/2016 08:49:14</publishTime>
     </File>
+    <File Include="Imgs/trafficlimit.png">
+      <publishTime>12/28/2016 14:54:02</publishTime>
+    </File>
     <File Include="Imgs/water.png">
       <publishTime>08/03/2016 10:06:27</publishTime>
+    </File>
+    <File Include="Imgs/交通限行_一般.png">
+      <publishTime>12/28/2016 14:51:14</publishTime>
+    </File>
+    <File Include="Imgs/交通限行_紧急.png">
+      <publishTime>12/28/2016 14:51:14</publishTime>
+    </File>
+    <File Include="Imgs/交通限行_重要.png">
+      <publishTime>12/28/2016 14:51:14</publishTime>
+    </File>
+    <File Include="Imgs/交通限行_非常紧急.png">
+      <publishTime>12/28/2016 14:51:14</publishTime>
     </File>
     <File Include="Imgs/公交_一般.png">
       <publishTime>09/06/2016 11:28:36</publishTime>
@@ -305,6 +329,18 @@
     </File>
     <File Include="Imgs/其他_非常紧急.png">
       <publishTime>09/06/2016 11:28:36</publishTime>
+    </File>
+    <File Include="Imgs/土地资讯_一般.png">
+      <publishTime>12/28/2016 14:51:14</publishTime>
+    </File>
+    <File Include="Imgs/土地资讯_紧急.png">
+      <publishTime>12/28/2016 14:51:14</publishTime>
+    </File>
+    <File Include="Imgs/土地资讯_重要.png">
+      <publishTime>12/28/2016 14:51:14</publishTime>
+    </File>
+    <File Include="Imgs/土地资讯_非常紧急.png">
+      <publishTime>12/28/2016 14:51:14</publishTime>
     </File>
     <File Include="Imgs/天然气_一般.png">
       <publishTime>09/06/2016 11:28:36</publishTime>
@@ -354,6 +390,18 @@
     <File Include="Imgs/自行车_非常紧急.png">
       <publishTime>09/06/2016 11:28:36</publishTime>
     </File>
+    <File Include="Imgs/道路维修_一般.png">
+      <publishTime>01/05/2017 13:30:41</publishTime>
+    </File>
+    <File Include="Imgs/道路维修_紧急.png">
+      <publishTime>01/05/2017 13:30:41</publishTime>
+    </File>
+    <File Include="Imgs/道路维修_重要.png">
+      <publishTime>01/05/2017 13:30:41</publishTime>
+    </File>
+    <File Include="Imgs/道路维修_非常紧急.png">
+      <publishTime>01/05/2017 13:30:41</publishTime>
+    </File>
     <File Include="packages.config">
       <publishTime>07/29/2016 11:17:38</publishTime>
     </File>
@@ -365,6 +413,15 @@
     </File>
     <File Include="Reference/Domain/TDTLayer/TDTAnnoLayer.js">
       <publishTime>07/29/2016 16:15:35</publishTime>
+    </File>
+    <File Include="Reference/Domain/TDTLayer/TDTImgAnnoLayer.js">
+      <publishTime>12/29/2016 09:47:33</publishTime>
+    </File>
+    <File Include="Reference/Domain/TDTLayer/TDTImgLayer.js">
+      <publishTime>12/29/2016 09:44:05</publishTime>
+    </File>
+    <File Include="Reference/Domain/TDTLayer/TDTVecAnnoLayer.js">
+      <publishTime>12/28/2016 16:18:43</publishTime>
     </File>
     <File Include="Reference/Domain/TDTLayer/TDTVecLayer.js">
       <publishTime>07/29/2016 16:15:39</publishTime>
@@ -1228,28 +1285,28 @@
       <publishTime>09/09/2016 14:36:57</publishTime>
     </File>
     <File Include="Views/Broadcast/BroadcastAdmin.cshtml">
-      <publishTime>09/09/2016 15:14:41</publishTime>
+      <publishTime>12/29/2016 09:32:25</publishTime>
     </File>
     <File Include="Views/Broadcast/BroadcastMap.cshtml">
-      <publishTime>09/09/2016 14:37:02</publishTime>
+      <publishTime>12/28/2016 16:28:21</publishTime>
     </File>
     <File Include="Views/Broadcast/CapturedInfoView.cshtml">
       <publishTime>08/19/2016 15:35:15</publishTime>
     </File>
     <File Include="Views/Broadcast/css/BroadcastAdmin.css">
-      <publishTime>10/08/2016 13:38:56</publishTime>
+      <publishTime>12/29/2016 09:29:40</publishTime>
     </File>
     <File Include="Views/Broadcast/css/BroadcastMap.css">
-      <publishTime>09/09/2016 14:58:28</publishTime>
+      <publishTime>12/28/2016 16:37:40</publishTime>
     </File>
     <File Include="Views/Broadcast/Index.cshtml">
-      <publishTime>10/11/2016 16:26:17</publishTime>
+      <publishTime>01/05/2017 11:23:51</publishTime>
     </File>
     <File Include="Views/Broadcast/js/BroadcastAdmin.js">
-      <publishTime>10/08/2016 10:27:37</publishTime>
+      <publishTime>12/29/2016 09:28:29</publishTime>
     </File>
     <File Include="Views/Broadcast/js/BroadcastMap.js">
-      <publishTime>09/09/2016 15:40:42</publishTime>
+      <publishTime>12/29/2016 11:30:15</publishTime>
     </File>
     <File Include="Views/Broadcast/ReportedInfoView.cshtml">
       <publishTime>08/22/2016 08:36:59</publishTime>
@@ -1267,7 +1324,7 @@
       <publishTime>07/29/2016 11:17:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/09/2016 10:53:00</publishTime>
+      <publishTime>02/28/2017 09:59:43</publishTime>
     </File>
   </ItemGroup>
 </Project>
