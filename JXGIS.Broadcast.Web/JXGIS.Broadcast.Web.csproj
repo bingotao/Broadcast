@@ -183,6 +183,8 @@
     <Content Include="Imgs\index_backgroud.jpg" />
     <Content Include="Imgs\index_btn.png" />
     <Content Include="Imgs\index_maincontent.png" />
+    <Content Include="Imgs\index_maincontent6.png" />
+    <Content Include="Imgs\index_maincontent5.png" />
     <Content Include="Imgs\index_maincontent2.png" />
     <Content Include="Imgs\index_maincontent3.png" />
     <Content Include="Imgs\index_maincontent4.png" />
